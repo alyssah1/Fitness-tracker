@@ -4,26 +4,26 @@ const db = require("../models");
 module.exports = function (app) {
 
     //gets all workouts
-    app.get("/api/workouts", (req, res) => {
+    app.get("/api/workouts", function(req, res) {
 
-        db.Workout.find({}).then(dbWorkout => {
-            dbWorkout.forEach(workout => {
+        db.Workout.find({}).then(dbWorkouts => {
+            dbWorkouts.forEach(workout => {
                 var total = 0;
-                workout.exercises.forEach(e => {
-                    total += e.duration;
+                workout.exercises.forEach(event => {
+                    total += event.duration;
                 });
                 workout.totalDuration = total;
 
             });
 
-            res.json(dbWorkout);
+            res.json(dbWorkouts);
         }).catch(err => {
             res.json(err);
         });
     });
 
     // add an exercise to existing workout
-    app.put("/api/workouts/:id", (req, res) => {
+    app.put("/api/workouts/:id", function(req, res) {
 
         db.Workout.findOneAndUpdate(
             { _id: req.params.id },
@@ -31,8 +31,8 @@ module.exports = function (app) {
                 $inc: { totalDuration: req.body.duration },
                 $push: { exercises: req.body }
             },
-            { new: true }).then(dbWorkout => {
-                res.json(dbWorkout);
+            { new: true }).then(dbWorkouts => {
+                res.json(dbWorkouts);
             }).catch(err => {
                 res.json(err);
             });
@@ -40,25 +40,20 @@ module.exports = function (app) {
     });
 
     //creates a workout
-    app.post("/api/workouts", ({ body }, res) => {
-        // console.log("WORKOUT TO BE ADDED");
-        // console.log(body);
-
-        db.Workout.create(body).then((dbWorkout => {
-            res.json(dbWorkout);
+    app.post("/api/workouts", ({ body }, res) => { 
+        db.Workout.create(body).then((dbWorkouts => {
+            res.json(dbWorkouts);
         })).catch(err => {
             res.json(err);
         });
     });
 
     // get workouts in range
-    app.get("/api/workouts/range", (req, res) => {
+    app.get("/api/workouts/range", function(req, res) {
 
-        db.Workout.find({}).then(dbWorkout => {
-            console.log("all workouts");
-            console.log(dbWorkout);
+        db.Workout.find({}).then(dbWorkouts => {
 
-            res.json(dbWorkout);
+            res.json(dbWorkouts);
         }).catch(err => {
             res.json(err);
         });
