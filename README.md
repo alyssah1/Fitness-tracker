@@ -9,6 +9,8 @@ The user is able to view, create and track daily workouts. The user can log mult
 
 
 # Application Screenshots
+![screenshot1](/assets/images/1st.png)
+![screenshot2](/assets/images/2nd.png)
 
 
 
