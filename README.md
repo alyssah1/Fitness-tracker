@@ -6,7 +6,7 @@
 The user is able to view, create and track daily workouts. The user can log multiple exercises in a workout on a given day. The user can track the name, type, weight, sets, reps and duration of the exercise. If the user chooses a cardio exercise, they can track the distance traveled. 
 
 # Heroku Link
-
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://pacific-woodland-85399.herokuapp.com/?id=5ff5440443db440017f99393)
 
 # Application Screenshots
 ![screenshot1](/assets/images/1st.png)
